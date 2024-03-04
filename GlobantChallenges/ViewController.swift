@@ -24,34 +24,34 @@ class ViewController: UIViewController {
         self.view.backgroundColor = .systemIndigo
         
         
-        
-        print(checkParentheses("()"))
-        print(checkParentheses("(hello, world)"))
-        print(checkParentheses("Random text (as this) is ok()."))
-        print(checkParentheses(")("))
-        print(checkParentheses("(Hello (,) world (!))"))
-        print(checkParentheses(")()("))
-        print(checkParentheses("))(("))
-    }
-    
-    
-    func checkParentheses(_ str: String) -> Bool {
-        var stack = [Character]()
-        
-        for c in str {
-            if c == "(" {
-                stack.append(c)
-            } else if c == ")" {
-                
-                if let last = stack.last, last == "(" {
-                    stack.removeLast()
-                } else {
-                    return false
-                }
-            }
+        let numRows = 6
+        let triangle = generatePascalsTriangle(numRows)
+        for row in triangle {
+            print(row)
         }
         
-        return stack.isEmpty
+    }
+    
+    func generatePascalsTriangle(_ numRows: Int) -> [[Int]] {
+        guard numRows > 0 else { return [] }
+        
+        var triangle = [[1]]
+        
+        for i in 1..<numRows {
+            var row = [Int]()
+            row.append(1)
+            
+            for j in 1..<i {
+                let prevRow = triangle[i - 1]
+                let value = prevRow[j - 1] + prevRow[j]
+                row.append(value)
+            }
+            
+            row.append(1)
+            triangle.append(row)
+        }
+        
+        return triangle
     }
     
 }
