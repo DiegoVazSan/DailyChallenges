@@ -22,17 +22,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemIndigo
-        
-        
-        let numRows = 6
-        let triangle = generatePascalsTriangle(numRows)
-        for row in triangle {
-            print(row)
-        }
-        
+        printPascalsTrinagle(with: 6)
     }
     
-    func generatePascalsTriangle(_ numRows: Int) -> [[Int]] {
+    func getPascalsTriangle(_ numRows: Int) -> [[Int]] {
         guard numRows > 0 else { return [] }
         
         var triangle = [[1]]
@@ -52,6 +45,13 @@ class ViewController: UIViewController {
         }
         
         return triangle
+    }
+    
+    func printPascalsTrinagle(with numRows: Int) {
+        let triangle = getPascalsTriangle(numRows)
+        for row in triangle {
+            print(row)
+        }
     }
     
 }
